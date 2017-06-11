@@ -91,7 +91,7 @@ public class UrlValidatorTest extends TestCase {
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   
 	   String[] validScheme = {"", "http://", "h3t://"};
-	   String[] invalidScheme = {"/", "http:/", "://", " "};
+	   String[] invalidScheme = {"http:/", "://", "123http://", " "};
 	   String testUrl;
 	   String validAuth = "www.google.com";
 	   
@@ -119,7 +119,7 @@ public class UrlValidatorTest extends TestCase {
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   
 	   String[] validAuth = {"www.google.com", "0.0.0.0", "255.255.255.255", "localhost", "google.com","www.google.co.uk"};
-	   String[] invalidAuth = {"256.256.256.256", "255.255.255.255.255", "255.", "www.google", "", "www.goo!gle.com"};
+	   String[] invalidAuth = {"256.256.256.256", "255.255.255.255.255", "www.google", "", "www.goo!gle.com", ""};
 	   String testUrl;
 	   String validScheme = "http://";
 	   
