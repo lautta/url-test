@@ -144,7 +144,7 @@ public class UrlValidatorTest extends TestCase {
 	   
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   
-	   String[] validAuth = {"www.google.com", "0.0.0.0", "255.255.255.255", "localhost", "google.com","www.google.co.uk"};
+	   String[] validAuth = {"www.google.com", "0.0.0.0", "255.255.255.255", "localhost", "google1.com","www.google.co.uk"};
 	   String[] invalidAuth = {"256.256.256.256", "255.255.255.255.255", "www.google", "", "www.goo!gle.com", ""};
 	   String testUrl;
 	   String validScheme = "http://";
@@ -200,7 +200,7 @@ public class UrlValidatorTest extends TestCase {
 	   
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   
-	   String[] validPath = {"/", "/path/folder/file.java", "/1"};
+	   String[] validPath = {"/", "/path1/folder1/file1.java", "/1"};
 	   String[] invalidPath = {" /path", "/ path", "path", "//path", "/p^th", "/.."};
 	   String testUrl;
 	   String validUrl = "http://www.google.com:0";
@@ -228,10 +228,10 @@ public class UrlValidatorTest extends TestCase {
 	   
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   
-	   String[] validQuery = {"?user=name", "?user=name&pass=word"};
+	   String[] validQuery = {"?user1=name1", "?user1=name1&pass1=word1"};
 	   String[] invalidQuery = {"?user=", "??user=name", " ?user=name"};
 	   String testUrl;
-	   String validUrl = "http://www.google.com:0/path";
+	   String validUrl = "http://www.google.com:0/path/";
 
 	   System.out.println("Query Partition Test\n");
 	   System.out.println("Expected True:");
