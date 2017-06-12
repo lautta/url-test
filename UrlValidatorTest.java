@@ -45,6 +45,8 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println("Expected True:");
 	   System.out.println("http://www.google.com");
 	   System.out.println(urlVal.isValid("http://www.google.com"));
+	   System.out.println("http://www.google.org");
+	   System.out.println(urlVal.isValid("http://www.google.org"));
 	   System.out.println("http://www.google.co.uk");
 	   System.out.println(urlVal.isValid("http://www.google.co.uk"));
 	   System.out.println("http://www.google.com:1");
@@ -63,8 +65,24 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println(urlVal.isValid("ftp://www.google.com"));
 	   System.out.println("www.google.com");
 	   System.out.println(urlVal.isValid("www.google.com"));
+	   System.out.println("http://wwwwwwwwwwwwwwwww.google.com");
+	   System.out.println(urlVal.isValid("http://wwwwwwwwwwwwwwwww.google.com"));
+	   System.out.println("http://localhost");
+	   System.out.println(urlVal.isValid("http://localhost"));
+	   System.out.println("http://www.google.com/maps/");
+	   System.out.println(urlVal.isValid("http://www.google.com/maps/"));
+	   System.out.println("http://www.google.com/maps/asia");
+	   System.out.println(urlVal.isValid("http://www.google.com/maps/asia"));
+	   System.out.println("http://google.com?test=value");
+	   System.out.println(urlVal.isValid("http://google.com?test=value"));
+	   System.out.println("http://google.com?test=value&thing=stuff");
+	   System.out.println(urlVal.isValid("http://google.com?test=value&thing=stuff"));
 	   
 	   System.out.println("\nExpected False:");
+	   System.out.println("http://www.google.bob");
+	   System.out.println(urlVal.isValid("http://www.google.bob"));
+	   System.out.println("http://www.google");
+	   System.out.println(urlVal.isValid("http://www.google"));
 	   System.out.println("http://www.google.com:111111");
 	   System.out.println(urlVal.isValid("http://www.google.com:111111"));
 	   System.out.println("http://www.google.com:-1");
@@ -79,6 +97,14 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println(urlVal.isValid("http:www.google.com"));
 	   System.out.println("://www.google.com");
 	   System.out.println(urlVal.isValid("://www.google.com"));
+	   System.out.println("http://www.google!!!!!.com");
+	   System.out.println(urlVal.isValid("http://www.google!!!!!.com"));
+	   System.out.println("http://www.google.com/^^^^^^^/");
+	   System.out.println(urlVal.isValid("http://www.google.com/^^^^^^^/"));
+	   System.out.println("http://256.256.256.256");
+	   System.out.println(urlVal.isValid("http://256.256.256.256"));
+	   System.out.println("http://999.999.999.999");
+	   System.out.println(urlVal.isValid("http://999.999.999.999"));
 	   
 	   
 	   
