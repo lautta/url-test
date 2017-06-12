@@ -237,7 +237,47 @@ public class UrlValidatorTest extends TestCase {
    
    public void testAnyOtherUnitTest()
    {
+		   boolean result;
+	   boolean expected = true;
+	   String schemeString;
+	   String authString;
+	   String portString;
+	   String pathString;
+	   String queryString;
 	   
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+	   ResultPair[] Schemes = {new ResultPair("http://", true), new ResultPair("https://", true), new ResultPair("h3t://", true), new ResultPair("ftp://", true), new ResultPair(":\\", false), new ResultPair("http", false), new ResultPair("http:", false)};
+	   ResultPair[] Authorities = {new ResultPair("www.amazon.com", true), new ResultPair("go.com", true), new ResultPair("0.0.0.0", true), new ResultPair("10.10.10.10", true), new ResultPair("255.255.255.255", true), new ResultPair("www.amazon.co.uk", true), new ResultPair("go.au", true), new ResultPair("256.256.256.256", false), new ResultPair("999.999.999.999", false), new ResultPair("1000.1000.1000.1000", false), new ResultPair("-1.1.1.1", false), new ResultPair("1.1.1.1.1", false)};
+	   ResultPair[] Ports = {new ResultPair(":80", true), new ResultPair(":0", true), new ResultPair(":65535", true), new ResultPair(":999", true), new ResultPair(":1000", true), new ResultPair(":65536", false), new ResultPair(":100000", false), new ResultPair(":-1", false), new ResultPair("", true)};
+	   ResultPair[] Paths = {new ResultPair("/path1", true), new ResultPair("/path", true), new ResultPair("", true), new ResultPair("/path/test", true), new ResultPair("/...", false), new ResultPair("/path//test", false)};
+	   ResultPair[] Queries = {new ResultPair("?foo=bar", true), new ResultPair("?foo=bar&bar=baz", true), new ResultPair("", true), new ResultPair("?foo=bar&bar=baz&baz=foo", true)};
+	   
+	   System.out.println("\n");
+	   for(int i = 0; i < Schemes.length; i++) {
+		   schemeString = Schemes[i].item;
+		   		   
+		   for (int j = 0; j < Authorities.length; j++) {
+			   authString = schemeString + Authorities[j].item;
+			   
+			   for(int k = 0; k < Ports.length; k++) {
+				   portString = authString + Ports[k].item;
+				   
+				   for (int m = 0; m < Paths.length; m++) {
+					   pathString = portString + Paths[m].item;
+					   
+					   for (int n = 0; n < Queries.length; n++) {
+						   queryString = pathString + Queries[n].item;
+						   expected = Schemes[i].valid && Authorities[j].valid && Ports[k].valid && Paths[m].valid && Queries[n].valid;
+						   result = urlVal.isValid(queryString);
+						   if (result != expected) {
+							   System.out.println(queryString + "\nexpected: " + expected + "\nresult: " + result);
+						   }
+					   }
+				   }
+			   }
+		   }
+	   }   
    }
    /**
     * Create set of tests by taking the testUrlXXX arrays and
